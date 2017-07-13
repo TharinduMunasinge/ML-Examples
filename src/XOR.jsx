@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Architect, Trainer}from 'synaptic';
 
+window.Synaptic=synaptic
 export default class Examples extends Component {
   constructor(props) {
     super(props);
@@ -50,7 +51,8 @@ export default class Examples extends Component {
           network = new synaptic.Architect.Perceptron(2, 13,1);
 
           //train the neural network with training data
-          const trainer = new Trainer(network);
+
+          const trainer = new synaptic.Trainer(network);
           const trainingSet = [{
                 input: [0,0],
                 output: [0]
@@ -73,13 +75,13 @@ export default class Examples extends Component {
             iterations: 100000,
             shuffle: true,
             log:false,
-            cost: Trainer.cost.MSE
+            cost: synaptic.Trainer.cost.MSE
           };
           trainer.train(trainingSet,options)
 
 
           //Predict
-          perceptron.activate([1,0])
+          network.activate([1,0])
          `
           }
         </pre>
