@@ -20,15 +20,19 @@ export default class Examples extends Component {
         <h4> Implementation </h4>
         <div className='row'>
         <div className='col-md-6'>
-        <pre>
+        <pre>{`
           var synaptic = require('synaptic');
 
-          perceptron = new synaptic.Architect.Perceptron(40, 25, 3);
+          //setting up the neural network
+          perceptron = new synaptic.Architect.Perceptron(2, 13,1);
 
+          //train the neural network with training data
           perceptron.trainer.XOR();
 
+          //Predict
           perceptron.activate([1,0])
-
+         `
+          }
         </pre>
       </div>
        </div>
@@ -51,7 +55,7 @@ export default class Examples extends Component {
             <tr><td>[1,0]</td><td>{this.state.perceptron.activate([1,0])}</td><td>{this.state.perceptron.activate([1,0])>0.5?1:0}</td></tr>
             <tr><td>[0,1]</td><td>{this.state.perceptron.activate([0,1])}</td><td>{this.state.perceptron.activate([0,1])>0.5?1:0}</td></tr>
             <tr><td>[1,1]</td><td>{this.state.perceptron.activate([1,1])}</td><td>{this.state.perceptron.activate([1,1])>0.5?1:0}</td></tr>
-            <tr><td>[0,0]</td><td>{this.state.perceptron.activate([0,0])}</td><td>{this.state.perceptron.activate([1,0])>0.5?1:0}</td></tr>
+            <tr><td>[0,0]</td><td>{this.state.perceptron.activate([0,0])}</td><td>{this.state.perceptron.activate([0,0])>0.5?1:0}</td></tr>
         </tbody>
         </table>
 	    </div>
