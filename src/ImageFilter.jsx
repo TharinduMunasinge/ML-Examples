@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Perceptron from './Perceptron';
 import { Trainer } from 'synaptic';
 import imagefil from './imageFilter.js'
 export default class ImageFilter extends Component {

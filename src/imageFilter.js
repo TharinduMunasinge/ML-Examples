@@ -2,8 +2,7 @@ import {Architect, } from 'synaptic';
 import jquery from 'jquery';
 
 export default function (scope, timeout, location) {
-    scope.filter = "Grayscale";
-    scope.disableTrain = false;
+  scope.disableTrain = false;
 
   var perceptron = null;
   var index = 0;
@@ -104,7 +103,7 @@ export default function (scope, timeout, location) {
       }
       context.putImageData(imageData,0,0);
 
-        setTimeout(iteration, timeout);
+      setTimeout(iteration, timeout);
     }
   train()
   }

@@ -1,14 +1,37 @@
 import React, { Component } from 'react';
-import Perceptron from './Perceptron';
-import { Trainer } from 'synaptic';
+import {Architect, Trainer}from 'synaptic';
 
 export default class Examples extends Component {
   constructor(props) {
     super(props);
-	    let myPerceptron = new Perceptron(2,13,1);
-	    myPerceptron.connectLayers();
-	    const myTrainer = new Trainer(myPerceptron);
-	    const trainer = myTrainer.XOR();
+	    const myPerceptron = new Architect.Perceptron(2, 3, 1);
+      const trainer = new Trainer(myPerceptron);
+      const trainingSet = [{
+            input: [0,0],
+            output: [0]
+          },
+          {
+            input: [0,1],
+            output: [1]
+          },
+          {
+            input: [1,0],
+            output: [1]
+          },
+          {
+            input: [1,1],
+            output: [0]
+          },
+        ]
+
+      var options = {
+        iterations: 100000,
+        shuffle: true,
+        log:false,
+        cost: Trainer.cost.MSE
+      };
+
+      trainer.train(trainingSet,options);
       this.state = {
         perceptron: myPerceptron,
       };
@@ -24,10 +47,36 @@ export default class Examples extends Component {
           var synaptic = require('synaptic');
 
           //setting up the neural network
-          perceptron = new synaptic.Architect.Perceptron(2, 13,1);
+          network = new synaptic.Architect.Perceptron(2, 13,1);
 
           //train the neural network with training data
-          perceptron.trainer.XOR();
+          const trainer = new Trainer(network);
+          const trainingSet = [{
+                input: [0,0],
+                output: [0]
+              },
+              {
+                input: [0,1],
+                output: [1]
+              },
+              {
+                input: [1,0],
+                output: [1]
+              },
+              {
+                input: [1,1],
+                output: [0]
+              },
+            ]
+
+          const options = {
+            iterations: 100000,
+            shuffle: true,
+            log:false,
+            cost: Trainer.cost.MSE
+          };
+          trainer.train(trainingSet,options)
+
 
           //Predict
           perceptron.activate([1,0])
